@@ -18,11 +18,7 @@ input.addEventListener('input', function (e) {
          }
        // console.log(city.textContent )
       })
-           
-        
-
     });
-
 
     itemsCityName.forEach(function(city){
         if (city.innerText.search(val) == -1){
@@ -33,9 +29,9 @@ input.addEventListener('input', function (e) {
             city.innerHTML = city.innerText;
         } else {
             city.classList.remove('hide');
-            for(let i = 0; i < itemsList.length; i++){
+            /* for(let i = 0; i < itemsList.length; i++){
                 itemsList[i].style.display = 'flex';
-             }
+             } */
             let str = city.innerText;
             city.innerHTML = insertMark(str, city.innerText.search(val), val.length)
         }

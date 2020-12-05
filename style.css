@@ -125,7 +125,7 @@ body {
     top: -1.5em;
     font-size: 23px;
     color: rgb(238, 238, 238);
-    transform: rotate(88deg);
+    transform: rotate(89deg);
   }
   .content__input[required]:hover + label:before, #before[required]:focus + label:before {
     color: black;
