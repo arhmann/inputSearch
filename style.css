@@ -1,0 +1,163 @@
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+
+body {
+  font-size: 20px;
+  font-weight: 400;
+  font-family: "Calibri";
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.content__wrapper {
+  min-width: 900px;
+}
+
+.content__form{
+    height: 47px;
+}
+
+.content__list {
+  padding: 0;
+  margin: 0;
+}
+
+.content__list li {
+  border: 1px solid black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+.btnAdd {
+  margin: 0;
+  background-color: #3c78d8;
+  color: #f2f6fc;
+  width: 80px;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.content__input {
+  width: 100%;
+  height: 47px;
+  border-radius: 0;
+  position: relative;
+  border: 1px solid black;
+  padding: 0 10px 0 10px;
+  font-size: 20px;
+  
+}
+
+  .content__input[required] + label {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .content__input[required] + label:before {
+    content: "\27A6";
+    position: absolute;
+    left: 37.2em;
+    top: -1.5em;
+    font-size: 23px;
+    color: rgb(238, 238, 238);
+    transform: rotate(88deg);
+  }
+  .content__input[required]:hover + label:before, #before[required]:focus + label:before {
+    color: black;
+  }
+  .content__input[required]:not(:focus):not(:hover):valid {
+    opacity: .4;
+  }
+  .content__input[required]:not(:focus):valid + label:before {
+    content: "\27A6";
+    color: green;
+  }
+
+
+.hide {
+  display: none;
+}
+
+/* .triangle-btm {
+  top: 8px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid black;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  right: 11px;
+}
+
+.triangle-top {
+  width: 0;
+  height: 0;
+  border-bottom: 140px solid #fcf921;
+  border-left: 70px solid transparent;
+  border-right: 70px solid transparent;
+} */
