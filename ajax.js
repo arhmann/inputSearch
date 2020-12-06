@@ -13,9 +13,11 @@ fetch('https://raw.githubusercontent.com/cscart/apply-for-job/master/frontend-de
 .then(response => {  //string
   arrCityNames = JSON.parse(response);
    for(i in arrCityNames){
-    let itemDOM = `<li> <span> ${arrCityNames[i].name} </span> <button class="content__btn btnAdd">Добавить</button></li>`;
-    console.log(arrCityNames[i].name)
-    UlParrent.innerHTML += itemDOM;
+    //let itemDOM = `<li> <span> ${arrCityNames[i].name} </span> <button class="content__btn btnAdd">Добавить</button></li>`;
+    //console.log(arrCityNames[i].name)
+    //UlParrent.innerHTML = itemDOM;
+    console.log('Тут цикл')
+    UlParrent.innerHTML += `<li> <script>alert("${arrCityNames[i].name}")</script></li>`;
    }
    
      
