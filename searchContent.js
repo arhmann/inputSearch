@@ -1,22 +1,29 @@
 
+const input = document.querySelector(".content__input");
+let itemsList = document.querySelectorAll(".content__list li");
+let itemsCityName = document.querySelectorAll(".content__list li span");
 
 input.addEventListener("input", function (e) {
   e.preventDefault();
-  const input = document.querySelector(".content__input");
+
   let val = this.value.trim();
-  let itemsList = document.querySelectorAll(".content__list li");
-  let itemsCityName = document.querySelectorAll(".content__list li span");
 
   if (val != "") {
   
     itemsCityName.forEach(function (city) {
+
       if (city.innerText.search(val) == -1) {
+
         itemsList.forEach(function (item) {
+
           item.classList.add("hide");
         });
+        
         city.classList.add("hide");
         city.innerHTML = city.innerText;
+
       } else {
+
         city.classList.remove("hide");
         let str = city.innerText;
         city.innerHTML = insertMark(
