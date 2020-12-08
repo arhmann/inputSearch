@@ -9,21 +9,14 @@ input.addEventListener("input", function (e) {
   let val = this.value.trim();
 
   if (val != "") {
-  
     itemsCityName.forEach(function (city) {
-
       if (city.innerText.search(val) == -1) {
-
         itemsList.forEach(function (item) {
-
           item.classList.add("hide");
         });
-        
         city.classList.add("hide");
         city.innerHTML = city.innerText;
-
       } else {
-
         city.classList.remove("hide");
         let str = city.innerText;
         city.innerHTML = insertMark(
@@ -39,7 +32,6 @@ input.addEventListener("input", function (e) {
       city.innerHTML = city.innerText;
     });
   }
-
 });
 
 function insertMark(string, pos, len) {
@@ -52,13 +44,5 @@ function insertMark(string, pos, len) {
   );
 }
 
-  /*   itemsList.forEach(function(item){
-  
-     itemsCityName.forEach(function(city){
-         if (city.textContent == val ) {
-            console.log('совпадение')
-         }
-      })
-    }); */
 
    
