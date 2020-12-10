@@ -141,7 +141,28 @@ body {
     content: "\27A6";
     color: green;
   }
+  @media screen and (max-width: 768px) { 
 
+  .container{
+    align-items: unset;
+    margin: 0 auto;
+    }
+
+    .content__input {
+      width: 200px;
+      font-size: 11px;
+    }
+
+    .content__item{
+      width: 400px;
+   
+   }
+
+   .content__list li {
+     width: 199px;
+     font-size: 11px;
+   }
+   }
 
 
 
