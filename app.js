@@ -13,6 +13,7 @@ res.then( function (arrCityNames){
   });
   const content = new Content();
   content.renderElement(arrNames[0]);
+  content.markTextSearch();
 
 });
 
