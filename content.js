@@ -10,27 +10,42 @@ export default class Content {
     nameCity.setAttribute("class", "content__item");
   }
 
-  markTextSearch() {
+  markAndSearch(arr) {
     const itemsCityName = document.querySelectorAll(".content__city-name");
-    document
-      .querySelector(".content__input")
-      .addEventListener("input", function (e) {
+    const input = document.querySelector(".content__input");
+    const parentItem = document.querySelector(".content__list");
+  
+    input.addEventListener("input", function (e) {
         e.preventDefault();
-        console.log('не пусто')
         let val = this.value.trim();
-        let firstString = val[0];
-        if (val != "") {
-          itemsCityName.forEach(function (city) {  
-            let str = city.innerText;
-            console.log(city.innerText.search(val))
-            if (city.innerText.search(val) >= 0) {
-              city.innerHTML = insertMark(str,city.innerText.search(val),val.length);
-            }
-          });
-        }
-        if (val === "") {
-          console.log('пусто')
+        const content = new Content();
+        let matches = null;
+
+        if (val != "" ) {
           itemsCityName.forEach(function (city) {
+           
+            let str = city.innerText; // выводит полностью название город край один!
+              matches = arr.filter(cityName => cityName.toLowerCase().includes(val.toLowerCase()));
+              let valueStringfy = String(matches);
+
+              /* if (city.textContent === valueStringfy) {
+                 
+               } */
+            if (!matches.length) {
+              parentItem.classList.add('hide');
+            } 
+            if (city.innerText.search(val) >= 0 ) {
+                city.innerHTML = insertMark(str,city.innerText.search(val),val.length);
+                
+               // content.renderElement(matches);
+            };
+          });
+        };
+        
+        if (val === "") {
+          itemsCityName.forEach(function (city) {
+            parentItem.classList.remove('hide');
+            matches = null;
             let str = city.innerText;
             city.innerHTML = insertMark(str,city.innerText.search(val),val.length);
           });
@@ -49,18 +64,3 @@ export default class Content {
   }
 }
 
-/* if(val != ''){
-     itemsCityName.forEach(function(city){
-         if (city.innerText.search(val) == -1){    
-         } 
-             let str = city.innerText;
-             city.innerHTML = insertMark(str, city.innerText.search(val), val.length)
-         }
-     });
-    } else {
-     itemsCityName.forEach(function(city){
-         city.classList.remove('hide');
-         city.innerHTML = city.innerText;
-      })
-   }
- }); */

@@ -68,6 +68,10 @@ body {
   display: none;
 }
 
+.show {
+  display: flex;
+}
+
 .container {
   display: flex;
   flex-direction: column;
