@@ -1,66 +1,48 @@
-export default class Content {
+import Api from "./api.js";
+
+export default class Content extends Api {
   constructor() {
-    this.ulItem = document.querySelector(".content__list");
+    super();
+    this.url = "https://raw.githubusercontent.com/cscart/apply-for-job/master/frontend-developer/files/003-rate-areas.json";
   }
 
-  renderElement(city) {
-    let nameCity = document.createElement("li");
-    nameCity.innerHTML = `<span class="content__city-name"> ${city} </span> <button class="content__btn btnAdd">Добавить</button>`;
-    this.ulItem.appendChild(nameCity);
-    nameCity.setAttribute("class", "content__item");
-  }
-
-  markAndSearch(arr) {
-    const itemsCityName = document.querySelectorAll(".content__city-name");
+  searchValue() {
+    const api = new Api();
+    const res = api.fetchData(this.url);
+    const arrNames = [];
     const input = document.querySelector(".content__input");
-    const parentItem = document.querySelector(".content__list");
-  
-    input.addEventListener("input", function (e) {
-        e.preventDefault();
-        let val = this.value.trim();
-        const content = new Content();
-        let matches = null;
+    let result = null;
+    res.then(function (ajaxNames) {
+      ajaxNames.forEach((names) => {
+        arrNames.push(names.name);
 
-        if (val != "" ) {
-          itemsCityName.forEach(function (city) {
-           
-            let str = city.innerText; // выводит полностью название город край один!
-              matches = arr.filter(cityName => cityName.toLowerCase().includes(val.toLowerCase()));
-              let valueStringfy = String(matches);
+        input.addEventListener("input", () => {
+          if (input.value === "" || input.value.length < 3) return;
+          const matches = arrNames.filter((city) =>
+            city.toLowerCase().includes(input.value.toLowerCase()));
+            matches.forEach((cityName) => {
+            if (matches.includes(cityName)) {
+              result = cityName;
+            }
+          });
+            const content = new Content();
+            content.createElement(result);
 
-              /* if (city.textContent === valueStringfy) {
-                 
-               } */
-            if (!matches.length) {
-              parentItem.classList.add('hide');
-            } 
-            if (city.innerText.search(val) >= 0 ) {
-                city.innerHTML = insertMark(str,city.innerText.search(val),val.length);
-                
-               // content.renderElement(matches);
-            };
-          });
-        };
-        
-        if (val === "") {
-          itemsCityName.forEach(function (city) {
-            parentItem.classList.remove('hide');
-            matches = null;
-            let str = city.innerText;
-            city.innerHTML = insertMark(str,city.innerText.search(val),val.length);
-          });
-        }
+        });
       });
+    });
+  }
 
-    function insertMark(string, pos, len) {
-      return (
-        string.slice(0, pos) +
-        "<mark>" +
-        string.slice(pos, pos + len) +
-        "</mark>" +
-        string.slice(pos + len)
-      );
-    }
+  createElement(element) {
+    
+    const ulItem = document.querySelector(".content__list");
+    let nameCity = document.createElement("li");
+    nameCity.innerHTML = `<span class="content__city-name"> ${element} </span> <button class="content__btn btnAdd">Добавить</button>`;
+    ulItem.appendChild(nameCity);
+    nameCity.setAttribute("class", "content__item");
+    /* if (document.querySelector('.content__city-name').textContent.includes(element)) {
+      return;
+    }  */
+      
   }
 }
-
