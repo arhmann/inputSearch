@@ -13,34 +13,32 @@ export default class Content extends Api {
     const arrNames = [];
     const input = document.querySelector(".content__input");
     const content = new Content();
-
+   
     res.then(data => {
-      data.forEach((names) => {
-        arrNames.push(names.name);
-        input.addEventListener("input", () => {
-          if (input.value.length < 3 || input.value === "") return;
-          const matches = arrNames.filter((cities) =>
-            cities.toLowerCase().includes(input.value.toLowerCase())
-          );
-          content.createElement(matches);
-          console.log('promise resolve')
+      const result =  new Promise((resolve, reject) => {
+        data.forEach((names) => {
+          arrNames.push(names.name);
+          input.addEventListener("input", () => {
+            if (input.value.length < 3 || input.value === "") return;
+            const matches = arrNames.filter((cities) =>
+              cities.toLowerCase().includes(input.value.toLowerCase())
+            );
+            content.createElement(matches);
+            resolve(matches)
+            
+          });
         });
-  
-      });
-    });
-    res.then(data => {
-      const content = new Content();
-      const resultPromise = new Promise((resolve, reject) => {
-        //console.log(arrNames)
-        //content.listenerButton();
-        console.log('Promise reject')
       })
-      
+    })
+    .catch(error => {
+      console.error(error)
     })
   }
 
   createElement(elements) {
+    
     const ulParent = document.querySelector(".content__list");
+    const btn = document.querySelector(".content__btn");
     ulParent.innerHTML = "";
     let nameCity = document.createElement("li");
     elements.forEach((el) => {
@@ -48,6 +46,14 @@ export default class Content extends Api {
       ulParent.appendChild(nameCity);
       nameCity.setAttribute("class", "content__item");
     });
+
+    if (btn){
+       btn.addEventListener('click', () => {
+         console.log('click')
+         console.log(btn.innerHTML)
+         btn.innerHTML = "Удалить";
+         })
+    }
   }
 
   cleanDOM(clean) {
@@ -59,13 +65,6 @@ export default class Content extends Api {
     for (let i = 0; i < 4; i++) {
       content.render(renderElement[i]);
     }
-  }
-
-  listenerButton() {
-    const btn = document.querySelector(".content__btn");
-    btn.addEventListener("click", (e) => {
-      console.log(e);
-    });
   }
 
 }
